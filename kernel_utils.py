@@ -188,4 +188,3 @@ def predict_on_video_set(face_extractor, input_size, models, strategy, frames_pe
             predictions.append(0.5)  # Default prediction for failed videos
             
     return predictions
-

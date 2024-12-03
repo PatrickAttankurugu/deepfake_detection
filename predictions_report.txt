@@ -1,0 +1,23 @@
+DeepFake Detection Analysis Report
+========================================
+
+Analysis Date: 2024-12-03 14:39:38
+Total Videos Analyzed: 8
+Processing Time: 343.6 seconds
+
+Detailed Results:
+----------------------------------------
+
+Detected Fake Videos:
+• f1.mp4               (Confidence: 98.2%)
+• f2.mp4               (Confidence: 86.6%)
+• f3.mp4               (Confidence: 98.8%)
+• f4.mp4               (Confidence: 96.4%)
+
+Detected Real Videos:
+• r1.mp4               (Confidence: 95.2%)
+• r2.mp4               (Confidence: 68.9%)
+• r3.mp4               (Confidence: 96.8%)
+• r4.mp4               (Confidence: 94.0%)
+
+Note: Confidence levels above 95% indicate very high certainty in the prediction.
