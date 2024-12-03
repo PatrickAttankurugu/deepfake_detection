@@ -8,8 +8,8 @@ import traceback
 
 import torch
 import pandas as pd
-from kernel_utils import VideoReader, FaceExtractor, confident_strategy, predict_on_video_set
-from classifiers import DeepFakeClassifier
+from video_processor import VideoReader, FaceExtractor, confident_strategy, predict_on_video_set
+from model import DeepFakeClassifier
 
 # Define the model weights to use
 DEFAULT_WEIGHTS = [
@@ -45,7 +45,7 @@ def main():
         parser = argparse.ArgumentParser("Predict single video")
         arg = parser.add_argument
         arg('--video-path', type=str, required=True, help="path to video file")
-        arg('--weights-dir', type=str, default="weights", help="path to directory with checkpoints")
+        arg('--weights-dir', type=str, default="models", help="path to directory with checkpoints")
         arg('--output', type=str, required=False, help="path to output file", default="prediction_report.txt")
         args = parser.parse_args()
         
