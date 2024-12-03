@@ -9,7 +9,7 @@ import traceback
 import torch
 import pandas as pd
 from kernel_utils import VideoReader, FaceExtractor, confident_strategy, predict_on_video_set
-from training.zoo.classifiers import DeepFakeClassifier
+from classifiers import DeepFakeClassifier
 
 # Define the model weights to use
 DEFAULT_WEIGHTS = [
@@ -109,14 +109,8 @@ def main():
             f.write("-" * 40 + "\n")
             f.write(f"Verdict: {verdict}\n")
             f.write(f"Confidence: {confidence:.1f}%\n")
-            
             f.write("\nNote: Confidence levels above 95% indicate very high certainty in the prediction.\n")
 
-        print(f"\nResults for {video_name}:")
-        print(f"Verdict: {verdict}")
-        print(f"Confidence: {confidence:.1f}%")
-        print(f"\nDetailed report saved to: {report_path}")
-        
         logging.info(f"Processing completed in {time.time() - stime:.1f} seconds")
         
     except Exception as e:

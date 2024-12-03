@@ -1,21 +1,21 @@
-2024-12-03 14:47:44,320 - INFO - Logging initialized successfully
-2024-12-03 14:47:44,321 - INFO - Starting DeepFake detection script
-2024-12-03 14:47:44,322 - INFO - Arguments parsed successfully: {'video_path': 'predict_folder/f1.mp4', 'weights_dir': 'weights', 'output': 'prediction_report.txt'}
-2024-12-03 14:47:44,322 - INFO - Loading model: weights\final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36
-2024-12-03 14:47:44,928 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
-2024-12-03 14:47:44,939 - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
-2024-12-03 14:47:45,451 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
-2024-12-03 14:47:45,456 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
-2024-12-03 14:47:46,185 - INFO - Successfully loaded model: weights\final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36
-2024-12-03 14:47:46,186 - INFO - Loading model: weights\final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19
-2024-12-03 14:47:46,778 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
-2024-12-03 14:47:47,248 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
-2024-12-03 14:47:47,250 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
-2024-12-03 14:47:47,684 - INFO - Successfully loaded model: weights\final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19
-2024-12-03 14:47:47,685 - INFO - Loading model: weights\final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31
-2024-12-03 14:47:48,163 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
-2024-12-03 14:47:48,401 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
-2024-12-03 14:47:48,405 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
-2024-12-03 14:47:48,852 - INFO - Successfully loaded model: weights\final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31
-2024-12-03 14:48:29,550 - INFO - Saving report to: C:\Users\SEMA Inc\Desktop\AGREGAR\deepfake\selim\prediction_report.txt
-2024-12-03 14:48:29,555 - INFO - Processing completed in 40.6 seconds
+2024-12-03 15:13:29,916 - INFO - Logging initialized successfully
+2024-12-03 15:13:29,917 - INFO - Starting DeepFake detection script
+2024-12-03 15:13:29,918 - INFO - Arguments parsed successfully: {'video_path': 'predict_folder/r1.mp4', 'weights_dir': 'weights', 'output': 'prediction_report.txt'}
+2024-12-03 15:13:29,919 - INFO - Loading model: weights\final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36
+2024-12-03 15:13:30,560 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
+2024-12-03 15:13:30,564 - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-12-03 15:13:31,065 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
+2024-12-03 15:13:31,075 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2024-12-03 15:13:31,740 - INFO - Successfully loaded model: weights\final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36
+2024-12-03 15:13:31,740 - INFO - Loading model: weights\final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19
+2024-12-03 15:13:32,356 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
+2024-12-03 15:13:32,591 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
+2024-12-03 15:13:32,592 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2024-12-03 15:13:32,978 - INFO - Successfully loaded model: weights\final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19
+2024-12-03 15:13:32,979 - INFO - Loading model: weights\final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31
+2024-12-03 15:13:33,486 - INFO - Loading pretrained weights from Hugging Face hub (timm/tf_efficientnet_b7.ns_jft_in1k)
+2024-12-03 15:13:33,715 - DEBUG - https://huggingface.co:443 "HEAD /timm/tf_efficientnet_b7.ns_jft_in1k/resolve/main/model.safetensors HTTP/11" 302 0
+2024-12-03 15:13:33,719 - INFO - [timm/tf_efficientnet_b7.ns_jft_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2024-12-03 15:13:34,121 - INFO - Successfully loaded model: weights\final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31
+2024-12-03 15:14:14,837 - INFO - Saving report to: C:\Users\SEMA Inc\Desktop\AGREGAR\deepfake\selim\prediction_report.txt
+2024-12-03 15:14:14,840 - INFO - Processing completed in 40.6 seconds
