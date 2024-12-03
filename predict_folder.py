@@ -11,6 +11,13 @@ import pandas as pd
 from kernel_utils import VideoReader, FaceExtractor, confident_strategy, predict_on_video_set
 from training.zoo.classifiers import DeepFakeClassifier
 
+# Define the model weights to use
+DEFAULT_WEIGHTS = [
+    "final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36",
+    "final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19",
+    "final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31"
+]
+
 def setup_logging():
     log_file = 'deepfake_detection.log'
     try:
@@ -35,24 +42,23 @@ def main():
         setup_logging()
         logging.info("Starting DeepFake detection script")
         
-        parser = argparse.ArgumentParser("Predict test videos")
+        parser = argparse.ArgumentParser("Predict single video")
         arg = parser.add_argument
+        arg('--video-path', type=str, required=True, help="path to video file")
         arg('--weights-dir', type=str, default="weights", help="path to directory with checkpoints")
-        arg('--models', nargs='+', required=True, help="checkpoint files")
-        arg('--test-dir', type=str, required=True, help="path to directory with videos")
-        arg('--output', type=str, required=False, help="path to output csv", default="submission.csv")
+        arg('--output', type=str, required=False, help="path to output file", default="prediction_report.txt")
         args = parser.parse_args()
         
         logging.info(f"Arguments parsed successfully: {vars(args)}")
 
         if not os.path.exists(args.weights_dir):
             raise FileNotFoundError(f"Weights directory not found: {args.weights_dir}")
-        if not os.path.exists(args.test_dir):
-            raise FileNotFoundError(f"Test directory not found: {args.test_dir}")
+        if not os.path.exists(args.video_path):
+            raise FileNotFoundError(f"Video file not found: {args.video_path}")
         
         models = []
-        model_paths = [os.path.join(args.weights_dir, model) for model in args.models]
-        for path in model_paths:
+        for weight in DEFAULT_WEIGHTS:
+            path = os.path.join(args.weights_dir, weight)
             if not os.path.exists(path):
                 raise FileNotFoundError(f"Model file not found: {path}")
             logging.info(f"Loading model: {path}")
@@ -73,57 +79,44 @@ def main():
         strategy = confident_strategy
         stime = time.time()
 
-        test_videos = sorted([x for x in os.listdir(args.test_dir) if x[-4:] == ".mp4"])
-        logging.info(f"Found {len(test_videos)} videos to process")
-        
+        video_name = os.path.basename(args.video_path)
         predictions = predict_on_video_set(
             face_extractor=face_extractor,
             input_size=input_size,
             models=models,
             strategy=strategy,
             frames_per_video=frames_per_video,
-            videos=test_videos,
-            num_workers=2,
-            test_dir=args.test_dir
+            videos=[video_name],
+            num_workers=1,
+            test_dir=os.path.dirname(args.video_path)
         )
 
-        submission_df = pd.DataFrame({
-            "filename": test_videos,
-            "label": predictions,
-            "verdict": ["FAKE" if p > 0.5 else "REAL" for p in predictions],
-            "confidence": [f"{abs(p - 0.5) * 200:.1f}%" for p in predictions]
-        })
+        prediction = predictions[0]
+        verdict = "FAKE" if prediction > 0.5 else "REAL"
+        confidence = abs(prediction - 0.5) * 200
 
-        output_path = os.path.abspath(args.output)
-        report_path = os.path.abspath(args.output.replace('.csv', '_report.txt'))
-        
-        logging.info(f"Saving CSV to: {output_path}")
-        submission_df.to_csv(output_path, index=False)
-        
+        report_path = os.path.abspath(args.output)
         logging.info(f"Saving report to: {report_path}")
+        
         with open(report_path, 'w') as f:
             f.write("DeepFake Detection Analysis Report\n")
             f.write("=" * 40 + "\n\n")
             f.write(f"Analysis Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"Total Videos Analyzed: {len(test_videos)}\n")
+            f.write(f"Video Analyzed: {video_name}\n")
             f.write(f"Processing Time: {time.time() - stime:.1f} seconds\n\n")
             
-            f.write("Detailed Results:\n")
+            f.write("Results:\n")
             f.write("-" * 40 + "\n")
+            f.write(f"Verdict: {verdict}\n")
+            f.write(f"Confidence: {confidence:.1f}%\n")
             
-            fakes = submission_df[submission_df.label > 0.5]
-            reals = submission_df[submission_df.label <= 0.5]
-            
-            f.write("\nDetected Fake Videos:\n")
-            for _, row in fakes.iterrows():
-                f.write(f"• {row['filename']:<20} (Confidence: {row['confidence']})\n")
-                
-            f.write("\nDetected Real Videos:\n")
-            for _, row in reals.iterrows():
-                f.write(f"• {row['filename']:<20} (Confidence: {row['confidence']})\n")
-                
             f.write("\nNote: Confidence levels above 95% indicate very high certainty in the prediction.\n")
 
+        print(f"\nResults for {video_name}:")
+        print(f"Verdict: {verdict}")
+        print(f"Confidence: {confidence:.1f}%")
+        print(f"\nDetailed report saved to: {report_path}")
+        
         logging.info(f"Processing completed in {time.time() - stime:.1f} seconds")
         
     except Exception as e:
