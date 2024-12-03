@@ -1,4 +1,46 @@
+
+3. Make sure your .gitignore is updated to exclude unnecessary files:
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Project specific
+models/
+logs/
+videos/
+*.mp4
+prediction_report.txt
+deepfake_detection.log
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+```
+
+
 models/
 models\
 predict_folder/
 predict_folder\
+videos/

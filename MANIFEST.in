@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+recursive-include deepfake_detector/models *
+recursive-include deepfake_detector/logs * 

@@ -1,13 +1,13 @@
 DeepFake Detection Analysis Report
 ========================================
 
-Analysis Date: 2024-12-03 15:46:17
-Video Analyzed: r4.mp4
-Processing Time: 41.9 seconds
+Analysis Date: 2024-12-03 16:19:17
+Video Analyzed: f1.mp4
+Processing Time: 46.7 seconds
 
 Results:
 ----------------------------------------
-Verdict: REAL
-Confidence: 94.0%
+Verdict: FAKE
+Confidence: 98.2%
 
 Note: Confidence levels above 95% indicate very high certainty in the prediction.

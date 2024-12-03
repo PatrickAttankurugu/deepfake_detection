@@ -1,8 +1,8 @@
 # DeepFake Detection
 
-A streamlined tool for detecting deepfake videos using deep learning.
+A Django package for detecting deepfake videos using deep learning.
 
-## Setup
+## Installation
 1. Create a virtual environment and activate it
 2. Install requirements: `pip install -r requirements.txt`
 3. Download model weights and place them in the `weights/` directory

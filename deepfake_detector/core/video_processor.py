@@ -132,8 +132,7 @@ def isotropically_resize_image(img, size, interpolation_down=cv2.INTER_AREA, int
     return resized
 
 
-def predict_on_video(face_extractor, video_path, batch_size, input_size, models, strategy=np.mean,
-                    apply_compression=False):
+def predict_on_video(face_extractor, video_path, batch_size, input_size, models, strategy=np.mean):
     try:
         faces = face_extractor.process_video(video_path)
         if len(faces) > 0:
@@ -143,13 +142,10 @@ def predict_on_video(face_extractor, video_path, batch_size, input_size, models,
                 for face in frame_data["faces"]:
                     resized_face = isotropically_resize_image(face, input_size)
                     resized_face = put_to_center(resized_face, input_size)
-                    if apply_compression:
-                        resized_face = image_compression(resized_face, quality=90, image_type=".jpg")
                     if n + 1 < batch_size:
                         x[n] = resized_face
                         n += 1
-                    else:
-                        pass
+            
             if n > 0:
                 x = torch.tensor(x).float()
                 x = x.permute((0, 3, 1, 2))
