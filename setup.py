@@ -20,6 +20,7 @@ setup(
     description="A DeepFake detection package for Django applications",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
+    url="https://github.com/PatrickAttankurugu/deepfake_detection",
     python_requires='>=3.8',
     classifiers=[
         'Framework :: Django',
