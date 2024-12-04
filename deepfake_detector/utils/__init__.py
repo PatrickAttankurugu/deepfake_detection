@@ -14,7 +14,7 @@ def get_detector_settings() -> Dict[str, Any]:
     """
     default_settings = {
         'WEIGHTS_DIR': 'models',
-        'LOG_DIR': 'logs',
+        'LOG_FILE': 'deepfake_detection.log',
         'GENERATE_REPORTS': False,
         'REPORT_DIR': 'reports'
     }

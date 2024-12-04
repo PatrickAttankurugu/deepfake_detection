@@ -1,9 +1,9 @@
 DeepFake Detection Analysis Report
 ========================================
 
-Analysis Date: 2024-12-03 16:19:17
+Analysis Date: 2024-12-04 11:19:12
 Video Analyzed: f1.mp4
-Processing Time: 46.7 seconds
+Processing Time: 65.5 seconds
 
 Results:
 ----------------------------------------
