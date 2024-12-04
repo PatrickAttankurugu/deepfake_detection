@@ -15,7 +15,7 @@ A Django package for detecting deepfake videos using deep learning. This package
 1. Install the package:
 
 bash
-pip install deepfake-detector
+pip install git+https://github.com/PatrickAttankurugu/deepfake_detection.git@django-package
 
 2. Add to INSTALLED_APPS in settings.py:
 
@@ -56,21 +56,32 @@ pip install git+https://github.com/PatrickAttankurugu/deepfake_detection.git@dja
 
 ### As a Django App
 1. Download model weights:
-
-```bash
-python download_models.py
-```
-
-2. Send POST requests to the API endpoint:
+2. Run this script to download the model weights
 
 ```python
-import requests
+import os
+import gdown
 
-url = 'http://your-domain/api/deepfake/analyze/'
-files = {'video': open('path/to/video.mp4', 'rb')}
-response = requests.post(url, files=files)
-result = response.json()
+def download_weights():
+    weights_dir = 'models'
+    os.makedirs(weights_dir, exist_ok=True)
+    
+    weights = {
+        'final_111_DeepFakeClassifier_tf_efficientnet_b7_ns_0_36': 'https://drive.google.com/uc?id=1Q8EDSx1jOFx4SGv90YkEVeVnksADjHcm',
+        'final_555_DeepFakeClassifier_tf_efficientnet_b7_ns_0_19': 'https://drive.google.com/uc?id=1ypnKmX7NvNfo6RYcOWZehEDQEHQScs1O',
+        'final_777_DeepFakeClassifier_tf_efficientnet_b7_ns_0_31': 'https://drive.google.com/uc?id=1M_VRMvLjC3WLgMjH9eIszC5x7wbSG1YR'
+    }
+
+    for name, url in weights.items():
+        output = os.path.join(weights_dir, name)
+        if not os.path.exists(output):
+            print(f'Downloading {name}...')
+            gdown.download(url, output, quiet=False)
+
+if __name__ == "__main__":
+    download_weights()
 ```
+
 
 ### As a Python Package
 
